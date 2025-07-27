@@ -1,0 +1,10 @@
+{
+  "github_token": "YOUR_GITHUB_TOKEN_HERE",
+  "firebase_account": "mahendra.hasabnis@gmail.com",
+  "templates": {
+    "react-native": "https://github.com/your-org/react-native-template",
+    "nextjs": "https://github.com/your-org/nextjs-template",
+    "flutter": "https://github.com/your-org/flutter-template"
+  },
+  "default_org": "neoabhro"
+} 
