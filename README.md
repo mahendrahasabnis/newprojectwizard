@@ -1,189 +1,317 @@
-# Project Wizard
+# NewProjWiz - Project Creation Wizard
 
-A full-stack Next.js 15 application that automates creating new projects by cloning a private GitHub repo, renaming identifiers, creating Firebase projects and apps (iOS, Android, Web), downloading config files, committing changes to a new GitHub branch, and returning success info.
+A comprehensive project creation wizard with Firebase and GitHub integration, built in Python with a web interface.
 
-## 🚀 Quick Start
+## 🚀 Features
 
-### Web App
-```bash
-npm run dev
-```
-Visit `http://localhost:3000` to use the web interface.
+### Core Functionality
+- **Project Creation**: Create new projects from templates with customizable configurations
+- **Firebase Integration**: Automatic Firebase project, app, and configuration setup
+- **GitHub Integration**: Create GitHub repositories and manage Git workflows
+- **Multi-Platform Support**: iOS, Android, and Web app configurations
+- **Real-time Progress**: Step-by-step progress updates in web interface
+- **Configuration Management**: Preserve existing configurations while updating Firebase data
 
-### Desktop App (Recommended)
-```bash
-npm run launch
-```
-Launches a native desktop application with full functionality.
+### Technical Features
+- **Web Interface**: Clean, responsive web UI built with Python's standard library
+- **Cross-Platform**: Works on macOS, Windows, and Linux
+- **Standalone Application**: Packaged as a native macOS application bundle
+- **No External Dependencies**: Uses only Python standard library for web server
+- **Clean Output**: Professional display without encoding issues
 
-## 🖥️ Desktop App Options
+## 📋 Requirements
 
-### macOS
-```bash
-# Simple launch
-npm run launch
+### System Requirements
+- **Python 3.8+**: Required for running the wizard
+- **Git**: For repository management
+- **Firebase CLI**: For Firebase project setup
+- **macOS**: For building the native application bundle
 
-# Shell script
-./launch.sh
+### Dependencies
+- **requests**: For GitHub API integration
+- **PyInstaller**: For packaging the application
 
-# Create installer
-npm run electron-dist
-```
+## 🛠️ Installation
 
-### Windows
-```bash
-# Simple launch
-npm run launch
+### Option 1: Native macOS Application (Recommended)
 
-# Batch file
-launch.bat
-
-# Create installer
-npm run electron-dist
-```
-
-### Linux
-```bash
-# Simple launch
-npm run launch
-
-# Shell script
-./launch.sh
-
-# Create installer
-npm run electron-dist
-```
-
-## 📦 Features
-
-- **GitHub Integration**: Clone private repositories and create new branches
-- **Firebase Setup**: Create projects, apps (iOS/Android/Web), and download config files
-- **Project Renaming**: Automatically rename project identifiers throughout the codebase
-- **Multi-Platform**: Works on macOS, Windows, and Linux
-- **Desktop App**: Native desktop application with full functionality
-- **Real-time Progress**: See project creation progress in real-time
-- **Error Handling**: Comprehensive error handling and recovery
-
-## 🛠️ Tech Stack
-
-- **Frontend**: Next.js 15, React 19, Tailwind CSS
-- **Backend**: Next.js API routes, tRPC
-- **Desktop**: Electron
-- **Process Management**: Node.js child_process/execa
-- **File Operations**: shelljs
-- **Validation**: Zod
-- **Environment**: dotenv
-
-## 🔧 Setup
-
-1. **Clone the repository**
+1. **Download the Application**:
    ```bash
-   git clone <your-repo-url>
+   # Clone the repository
+   git clone https://github.com/mahendrahasabnis/newprojectwizard.git
    cd newprojectwizard
    ```
 
-2. **Install dependencies**
+2. **Build the Application**:
    ```bash
-   npm install
+   # Run the build script
+   python3 build_full_web.py
    ```
 
-3. **Set up environment variables**
-   Create `.env.local`:
-   ```env
-   GITHUB_PAT=your_github_personal_access_token_here
-   FIREBASE_TOKEN=your_firebase_token_here
-   ```
-
-4. **Run the application**
+3. **Install to Applications**:
    ```bash
-   # Web app
-   npm run dev
-   
-   # Desktop app
-   npm run launch
+   # Use the install script
+   ./install.sh
    ```
 
-## 📱 Desktop App Features
+4. **Launch the Application**:
+   - Open `/Applications/NewProjWiz_FullWeb/NewProjWiz_FullWeb`
+   - Or use Spotlight: `Cmd + Space` and search for "NewProjWiz"
 
-- **Native Window**: Looks and feels like a native app
-- **Menu Bar**: Native menus with keyboard shortcuts (Cmd+N for new project)
-- **Full Functionality**: All web features work perfectly
-- **External Links**: Opens GitHub and Firebase links in your browser
-- **Auto-start Server**: Automatically starts the Next.js server when needed
-- **Cross-platform**: Works on macOS, Windows, and Linux
+### Option 2: Run from Source
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/mahendrahasabnis/newprojectwizard.git
+   cd newprojectwizard
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   pip3 install -r requirements.txt
+   ```
+
+3. **Configure the Application**:
+   ```bash
+   # Edit config.json with your credentials
+   nano config.json
+   ```
+
+4. **Run the Wizard**:
+   ```bash
+   python3 python_wizard_full_web.py
+   ```
+
+## ⚙️ Configuration
+
+### Setup config.json
+
+Create or edit `config.json` with your credentials:
+
+```json
+{
+  "github_token": "YOUR_GITHUB_TOKEN_HERE",
+  "firebase_account": "your-email@gmail.com",
+  "templates": {
+    "react-native": "https://github.com/your-org/react-native-template",
+    "nextjs": "https://github.com/your-org/nextjs-template",
+    "flutter": "https://github.com/your-org/flutter-template"
+  },
+  "default_org": "your-org-name"
+}
+```
+
+### Required Credentials
+
+1. **GitHub Token**:
+   - Go to GitHub Settings → Developer settings → Personal access tokens
+   - Generate a new token with `repo` and `user` permissions
+   - Replace `YOUR_GITHUB_TOKEN_HERE` with your actual token
+
+2. **Firebase Account**:
+   - Use your Google account email associated with Firebase
+   - Ensure Firebase CLI is installed and authenticated
 
 ## 🎯 Usage
 
-1. **Fill out the form** with your project details
-2. **Select template repository** and branch
-3. **Choose Firebase account** for project creation
-4. **Click "Create Project"** and watch the magic happen!
-5. **Get your new project** with all Firebase configs and GitHub repository
+### Creating a New Project
+
+1. **Launch the Application**:
+   - Open the NewProjWiz application
+   - A web browser will automatically open to the wizard interface
+
+2. **Fill in Project Details**:
+   - **Project Name**: Enter a unique project name
+   - **Description**: Provide a project description
+   - **Template Repository**: Select from available templates
+   - **Template Branch**: Choose the branch to clone from
+   - **Organization Domain**: Enter your organization domain
+   - **Firebase Account**: Your Firebase account email
+
+3. **Configure Options**:
+   - ✅ **Initialize Git**: Create a new GitHub repository
+   - ✅ **Setup Firebase**: Create Firebase project and apps
+   - ✅ **Download Configs**: Download Firebase configuration files
+
+4. **Create Project**:
+   - Click "Create Project" to start the process
+   - Monitor real-time progress in the web interface
+   - View detailed step-by-step updates
+
+### What Happens During Creation
+
+1. **Template Cloning**: Clones the selected template repository
+2. **GitHub Repository**: Creates a new GitHub repository (if enabled)
+3. **Firebase Setup**: 
+   - Creates Firebase project
+   - Creates iOS, Android, and Web apps
+   - Downloads configuration files
+   - Updates `app_config.json` with Firebase data
+4. **Git Operations**: Commits and pushes changes to GitHub
 
 ## 📁 Project Structure
 
 ```
-├── src/
-│   ├── app/                 # Next.js app directory
-│   │   ├── api/            # API routes
-│   │   ├── new/            # Project creation form
-│   │   └── success/        # Success page
-│   ├── lib/                # Shared utilities
-│   └── types.ts            # TypeScript types
-├── electron/               # Desktop app files
-│   └── main.js            # Electron main process
-├── public/                 # Static assets
-├── launch-electron.js      # Desktop app launcher
-├── launch.sh              # macOS/Linux launcher
-├── launch.bat             # Windows launcher
-└── package.json           # Dependencies and scripts
+newprojectwizard/
+├── python_wizard_full_web.py    # Main application file
+├── build_full_web.py            # Build script for macOS app
+├── install.sh                   # Installation script
+├── config.json                  # Configuration file
+├── requirements.txt             # Python dependencies
+├── .gitignore                   # Git ignore rules
+├── README.md                    # This file
+├── dist/                        # Build outputs (excluded from Git)
+│   └── NewProjWiz_FullWeb/      # macOS application bundle
+└── projects/                    # Generated projects
+    └── [project-name]/          # Individual project directories
 ```
 
-## 🔧 Troubleshooting
+## 🔧 Build Scripts
 
-### Desktop App Issues
-- **App won't start**: Check if Node.js and npm are installed
-- **Build errors**: Clear `.next` folder and rebuild
-- **Permission errors**: Allow the app in System Preferences (macOS)
+### Available Build Options
 
-### Firebase Issues
-- **Project creation fails**: Ensure Firebase CLI is logged in with correct account
-- **Storage setup fails**: Storage rules are created but may need manual initialization
-- **Config download fails**: Check Firebase project permissions
+1. **Full Web-Only Build** (Recommended):
+   ```bash
+   python3 build_full_web.py
+   # Choose option 1 for full web-only build
+   ```
 
-### GitHub Issues
-- **Repository access**: Ensure GitHub PAT has correct permissions
-- **Branch creation**: Check repository write permissions
+2. **Debug Build**:
+   ```bash
+   python3 build_full_web.py
+   # Choose option 2 for debug build with console output
+   ```
 
-## 📦 Distribution
+3. **Both Builds**:
+   ```bash
+   python3 build_full_web.py
+   # Choose option 3 for both builds
+   ```
 
-### Create Desktop Installer
+### Build Outputs
+
+- **Full Build**: `dist/NewProjWiz_FullWeb/` - Production-ready macOS app
+- **Debug Build**: `dist/NewProjWiz_FullWeb_debug/` - Debug version with console output
+
+## 🎨 Features in Detail
+
+### Emoji-Free Interface
+- Clean, professional display without encoding issues
+- Clear status messages: `SUCCESS:`, `WARNING:`, `ERROR:`
+- Cross-platform compatible output
+
+### Configuration Preservation
+- Preserves existing `app_config.json` structure
+- Updates only Firebase-related keys
+- Maintains custom configurations and user-defined values
+- Incremental updates without data loss
+
+### Real-time Progress Updates
+- Step-by-step progress display in web interface
+- Detailed status messages for each operation
+- Terminal-style output in web browser
+
+### Firebase Integration
+- **Project Creation**: Automatic Firebase project setup
+- **App Creation**: iOS, Android, and Web app registration
+- **Configuration Download**: Automatic config file downloads
+- **Data Updates**: Updates `app_config.json` with real Firebase data
+
+### GitHub Integration
+- **Repository Creation**: Automatic GitHub repository setup
+- **Git Operations**: Clone, commit, and push operations
+- **Conflict Resolution**: Handles push conflicts automatically
+- **Remote Management**: Updates Git remotes for new repositories
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **Port Already in Use**:
+   - The application automatically finds an available port
+   - If issues persist, restart the application
+
+2. **Firebase CLI Not Found**:
+   ```bash
+   # Install Firebase CLI
+   npm install -g firebase-tools
+   firebase login
+   ```
+
+3. **GitHub Token Issues**:
+   - Ensure your GitHub token has the required permissions
+   - Check that the token is valid and not expired
+
+4. **Large File Issues**:
+   - Build outputs are automatically excluded via `.gitignore`
+   - Large files are not included in the repository
+
+### Debug Mode
+
+Run the application in debug mode for detailed output:
+
 ```bash
-npm run electron-dist
+# Run from source with debug output
+python3 python_wizard_full_web.py
+
+# Or use the debug build
+./dist/NewProjWiz_FullWeb_debug/NewProjWiz_FullWeb_debug
 ```
 
-This creates platform-specific installers:
-- **macOS**: `.dmg` file
-- **Windows**: `.exe` installer
-- **Linux**: `.AppImage` file
+## 📚 Documentation
 
-### Share with Team
-1. Build the installer: `npm run electron-dist`
-2. Share the installer file from the `dist` folder
-3. Users can install it like any other app
+### Additional Documentation Files
+
+- `EMOJI_FIXES_AND_CONFIG_UPDATE.md`: Details about emoji fixes and config preservation
+- `STEP_UPDATES_FEATURE.md`: Information about real-time progress updates
+- `GITHUB_PUSH_CONFLICT_FIX.md`: GitHub integration troubleshooting
+- `ENHANCED_FIREBASE_CONFIG_UPDATE.md`: Firebase configuration details
+
+### API Documentation
+
+The application uses several key methods:
+
+- `ProjectWizard.create_project()`: Main project creation method
+- `ProjectWizard.setup_firebase_simplified()`: Firebase setup workflow
+- `ProjectWizard.create_github_repository()`: GitHub repository creation
+- `ProjectWizard._update_config_json_with_firebase()`: Configuration updates
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+1. **Fork the Repository**: Create your own fork of the project
+2. **Create a Feature Branch**: `git checkout -b feature/amazing-feature`
+3. **Make Changes**: Implement your improvements
+4. **Test Thoroughly**: Ensure all functionality works correctly
+5. **Submit a Pull Request**: Create a PR with detailed description
+
+### Development Guidelines
+
+- Follow Python PEP 8 style guidelines
+- Add comprehensive error handling
+- Include docstrings for all functions
+- Test on multiple platforms when possible
+- Update documentation for new features
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- **Firebase Team**: For the excellent Firebase CLI and API
+- **GitHub Team**: For the comprehensive GitHub API
+- **Python Community**: For the robust standard library
+- **PyInstaller Team**: For the excellent packaging solution
+
+## 📞 Support
+
+For support and questions:
+
+1. **Check Documentation**: Review the documentation files in the repository
+2. **Search Issues**: Look for similar issues in the GitHub issues section
+3. **Create Issue**: Open a new issue with detailed information
+4. **Contact**: Reach out through GitHub discussions
 
 ---
 
-**🎉 Happy project creation!**
+**NewProjWiz** - Streamlining project creation with Firebase and GitHub integration! 🚀
