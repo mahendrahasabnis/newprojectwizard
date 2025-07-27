@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# NewProjWiz command-line launcher
+# Usage: newprojwiz
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+if [ -d "dist/mac-arm64/NewProjWiz.app" ]; then
+    open "dist/mac-arm64/NewProjWiz.app"
+else
+    echo "Building NewProjWiz first..."
+    npm run electron-dist
+    if [ -d "dist/mac-arm64/NewProjWiz.app" ]; then
+        open "dist/mac-arm64/NewProjWiz.app"
+    else
+        echo "Failed to build NewProjWiz"
+        exit 1
+    fi
+fi 

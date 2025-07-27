@@ -1,27 +1,72 @@
 {
-  "name": "newprojectwizard",
+  "name": "newprojwiz",
   "version": "0.1.0",
   "private": true,
+  "main": "electron/main.js",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "electron": "electron .",
+    "electron-dev": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-pack": "npm run build && electron-builder",
+    "electron-dist": "npm run build && electron-builder --publish=never",
+    "launch": "node launch-electron.js"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.81.2",
+    "@trpc/client": "^11.4.2",
+    "@trpc/next": "^11.4.2",
+    "@trpc/react-query": "^11.4.2",
+    "@trpc/server": "^11.4.2",
+    "dotenv": "^16.5.0",
+    "execa": "^9.6.0",
+    "next": "15.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.3.4"
+    "shelljs": "^0.10.0",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "@types/shelljs": "^0.8.16",
+    "electron": "^37.2.4",
+    "electron-builder": "^26.0.12",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "build": {
+    "appId": "com.newprojwiz.app",
+    "productName": "NewProjWiz",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**/*",
+      ".next/**/*",
+      "public/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "public/favicon.ico",
+      "target": "dmg"
+    },
+    "win": {
+      "icon": "public/favicon.ico",
+      "target": "nsis"
+    },
+    "linux": {
+      "icon": "public/favicon.ico",
+      "target": "AppImage"
+    }
   }
 }
